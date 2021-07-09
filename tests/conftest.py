@@ -1,10 +1,7 @@
-"""
-    Dummy conftest.py for githubinfo.
+import pytest
+import sys
+import os
 
-    If you don't know what this is for, just leave it empty.
-    Read more about conftest.py under:
-    - https://docs.pytest.org/en/stable/fixture.html
-    - https://docs.pytest.org/en/stable/writing_plugins.html
-"""
+sys.path.insert(0, os.path.abspath("../src/githubinfo"))
+sys.path.insert(1, os.path.abspath("../src"))
 
-# import pytest
