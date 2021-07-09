@@ -6,6 +6,8 @@ Welcome to GitHub Info's documentation!
    :hidden:
    :caption: API Documentation
 
+   src/githubinfo
+
 
 
 Indices and tables
