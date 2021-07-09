@@ -1,11 +1,11 @@
-# githubinfo
+# github-info
 
-GitHubInfo is a command line tool that helps you access GitHub anytime.
+GitHub Info is a command line tool that helps you access GitHub anytime.
 
 
 # Description
 
-GitHubInfo gives you easy access to GitHub. For example:
+GitHub Info gives you easy access to GitHub. For example:
 
 ```bash
 $ ghi user Cutewarriorlover
