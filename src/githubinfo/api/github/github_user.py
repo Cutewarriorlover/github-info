@@ -24,6 +24,30 @@ class GitHubUser:
     def __init__(self, username):
         self.username = username
         self.data = requests.get(f"https://api.github.com/users/{username}").json()
+        
+    def __repr__(self):
+        return f"""
+Info about user {self.data["login"]}
+Avatar image: {self.data["avatar_url"]}
+
+User home page: {self.data["html_url"]}
+
+Commands:
+    To get a list of this user's repositories, use the following command:
+        $ ghi repos --user {self.data["login"]}
+
+    To get a list of this user's GitHub Gists, use the following command:
+        $ ghi gists --user {self.data["login"]}
+
+    To get a list of this user's followers, use the following command:
+        $ ghi followers --user {self.data["login"]}
+
+    To get a list of the users this user is following, use the following command:
+        $ ghi following --user {self.data["login"]}
+
+    To get a list of the repositories this user has starred, use the following command:
+        $ ghi starred --user {self.data["login"]}
+""".strip()
 
     def update(self):
         """
