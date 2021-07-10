@@ -1,1 +1,1 @@
-from src.githubinfo.api.github.github_user import GitHubUser
+from src.githubinfo.api.github_user import GitHubUser
