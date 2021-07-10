@@ -24,7 +24,7 @@ class GitHubUser:
     def __init__(self, username):
         self.username = username
         self.data = requests.get(f"https://api.github.com/users/{username}").json()
-        
+
     def __repr__(self):
         return f"""
 Info about user {self.data["login"]}
