@@ -1,3 +1,7 @@
+"""
+Main entry point of the GitHub API's Folder.
+"""
+
 from src.githubinfo.api.github_file import GitHubFile
 
 
@@ -18,14 +22,18 @@ class GitHubRootFolder:
     def __init__(self):
         self.name = "/"
         self.children = []
-        
-    def dir(self):
+
+    def __repr__(self):
+        result = ""
+
         for item in self.children:
-            if type(item) == GitHubFolder:
-                print(item.name + "/")
-                item.dir()
-            elif type(item) == GitHubFile:
-                print(item.name)
+            if isinstance(item, GitHubFolder):
+                result += (item.name + "/")
+                result += repr(item)
+            elif isinstance(item, GitHubFile):
+                result += item.name
+
+        return result
 
 
 class GitHubFolder:
@@ -50,11 +58,14 @@ class GitHubFolder:
         self.parent = parent
         self.children = []
 
-    def dir(self, nesting=1):
+    def __repr__(self, nesting=1):
+        result = ""
         indent = nesting * "    "
 
         for item in self.children:
-            if type(item) == GitHubFolder:
-                item.dir(nesting + 1)
-            elif type(item) == GitHubFile:
-                print(indent + item.name)
+            if isinstance(item, GitHubFolder):
+                result += repr(nesting + 1)
+            elif isinstance(item, GitHubFile):
+                result += indent + item.name
+
+        return result

@@ -1,3 +1,8 @@
+"""
+Main entry point to the GitHub file.
+"""
+
+
 class GitHubFile:
     """
     This is the main GitHub File.
@@ -28,10 +33,26 @@ class GitHubFile:
             - js
             - md
 
-            While those may be used commonly, they shouldn't be used here.
+            While those may be used commonly (possibly even officially), they
+            shouldn't be used here.
     """
+
     def __init__(self, name, parent, contents, type_):
         self.name = name
         self.parent = parent
         self.contents = contents
         self.type_ = type_
+
+    def __repr__(self):
+        return f"{self.name} - {self.type_.title()}"
+
+    def syntax_ansi(self):
+        """
+        Returns the contents of this file with syntax highlighting in the ANSI
+        format.
+
+        Returns:
+            str:
+                The contents of this file with syntax highlighting in the ANSI format.
+        """
+        raise NotImplementedError()
