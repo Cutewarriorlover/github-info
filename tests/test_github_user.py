@@ -7,6 +7,6 @@ class TestGitHubUser:
         
     def test_user_profile_url(self):
         assert self.user.github_url() == "https://github.com/Cutewarriorlover"
-        
+
     def test_user_repr(self):
         print(self.user)

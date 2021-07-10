@@ -18,6 +18,14 @@ class GitHubRootFolder:
     def __init__(self):
         self.name = "/"
         self.children = []
+        
+    def dir(self):
+        for item in self.children:
+            if type(item) == GitHubFolder:
+                print(item.name + "/")
+                item.dir()
+            elif type(item) == GitHubFile:
+                print(item.name)
 
 
 class GitHubFolder:
@@ -42,11 +50,11 @@ class GitHubFolder:
         self.parent = parent
         self.children = []
 
-    def dir(self, nesting=0):
+    def dir(self, nesting=1):
         indent = nesting * "    "
 
         for item in self.children:
             if type(item) == GitHubFolder:
                 item.dir(nesting + 1)
             elif type(item) == GitHubFile:
-                print(indent + "    " + item.name)
+                print(indent + item.name)

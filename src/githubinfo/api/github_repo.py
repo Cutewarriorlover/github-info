@@ -1,9 +1,8 @@
-from src.githubinfo.api.github_folder import GitHubFolder
+from src.githubinfo.api.github_folder import GitHubRootFolder
 
 
 class GitHubRepo:
     def __init__(self, owner, name):
         self.owner = owner
         self.name = name
-        self.rootFolder = GitHubFolder(None, "/")
-    
+        self.root_folder = GitHubRootFolder()
