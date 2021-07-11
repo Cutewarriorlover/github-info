@@ -6,6 +6,11 @@ information, you need to call the :meth:`GitHubUser.update` method.
 """
 
 import requests
+import json
+from dateutil import parser
+from datetime import datetime
+
+from src.githubinfo.api.github_repo import GitHubRepo
 
 
 class GitHubUser:
@@ -24,6 +29,13 @@ class GitHubUser:
     def __init__(self, username):
         self.username = username
         self.data = requests.get(f"https://api.github.com/users/{username}").json()
+        self.username = self.data["login"]  # Username is case-insensitive
+        self.repos = []
+
+        repos = json.loads(requests.get(self.data["repos_url"]).content.decode("UTF-8"))
+
+        for repo in repos:
+            self.repos.append(GitHubRepo(self.username, repo["name"]))
 
     def __repr__(self):
         return f"""
@@ -31,6 +43,8 @@ Info about user {self.data["login"]}
 Avatar image: {self.data["avatar_url"]}
 
 User home page: {self.data["html_url"]}
+
+User join time: {self.join_time}
 
 Commands:
     To get a list of this user's repositories, use the following command:
@@ -60,7 +74,7 @@ Commands:
             While this method is guaranteed to retrieve the user's information,
             it is possible that GitHub's API hasn't updated yet.
         """
-        self.data = requests.get(f"https://api.github.com/users/{self.username}")
+        self.data = requests.get(f"https://api.github.com/users/{self.username}", auth=("03d5bd8a8be4c06b556e", "2f11cef36b62e7a5c78debef50b96e895ada04b2"))
 
     def github_url(self):
         """
@@ -79,3 +93,11 @@ Commands:
             str: The link to the user's GitHub profile.
         """
         return self.data["html_url"]
+
+    def join_time(self):
+        join_time = parser.parse(self.data["created_at"])
+        join_time = float(join_time.strftime("%s"))
+        join_time = datetime.fromtimestamp(join_time)
+        join_time = join_time.strftime("%A, %B %d, %Y at %I:%M %p")
+
+        return join_time

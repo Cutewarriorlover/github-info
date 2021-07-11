@@ -18,33 +18,18 @@ class GitHubFile:
             it is presumed this folder is a top level folder.)
         contents (str):
             The contents of this file.
-        type_ (str):
-            The type of this file. This should be in lowercase. For example:
-
-            - python
-            - javascript
-            - java
-            - markdown
-
-            This format shouldn't be in abbreviation form. The following counts
-            as abbreviation:
-
-            - py
-            - js
-            - md
-
-            While those may be used commonly (possibly even officially), they
-            shouldn't be used here.
+        extension (str):
+            Extension of this file.
     """
 
-    def __init__(self, name, parent, contents, type_):
+    def __init__(self, name, parent, contents, extension):
         self.name = name
         self.parent = parent
         self.contents = contents
-        self.type_ = type_
+        self.extension = extension
 
     def __repr__(self):
-        return f"{self.name} - {self.type_.title()}"
+        return f"{self.name}"
 
     def syntax_ansi(self):
         """
